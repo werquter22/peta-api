@@ -26,20 +26,12 @@ class UserPutAction extends AbstractController
         $userDto = $this->getDtoFromRequest($request, UserDto::class);
         $user = $userRepository->find($id);
 
-        if ($userDto->getEmail() !== null) {
-            $user->setEmail($userDto->getEmail());
+        if ($userDto->getUserName() !== null) {
+            $user->setUserName($userDto->getUserName());
         }
 
         if ($userDto->getPassword() !== null) {
             $user->setPassword($passwordEncoder->hashPassword($user, $userDto->getPassword()));
-        }
-
-        if ($userDto->getGivenName() !== null) {
-            $user->setGivenName($userDto->getGivenName());
-        }
-
-        if ($userDto->getFamilyName() !== null) {
-            $user->setFamilyName($userDto->getFamilyName());
         }
 
         if ($userDto->getPhone() !== null) {
