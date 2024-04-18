@@ -37,6 +37,7 @@ class EmployeeCreateAction extends AbstractController
             $employeeDto->getImage()
         );
 
+        $user->addRole('ROLE_DOCTOR');
         $userManager->save($user);
 
         return $employeeFactory->create(

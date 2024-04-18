@@ -26,20 +26,12 @@ class EmployeePutAction extends AbstractController
         $employeeDto = $this->getDtoFromRequest($request, EmployeeDto::class);
         $employee = $employeeRepository->find($id);
 
-        if ($employeeDto->getEmail() !== null) {
-            $employee->getUser()->setEmail($employeeDto->getEmail());
+        if ($employeeDto->getUserName() !== null) {
+            $employee->getUser()->setUserName($employeeDto->getUserName());
         }
 
         if ($employeeDto->getPassword() !== null) {
             $employee->getUser()->setPassword($passwordEncoder->hashPassword($employee->getUser(), $employeeDto->getPassword()));
-        }
-
-        if ($employeeDto->getGivenName() !== null) {
-            $employee->getUser()->setGivenName($employeeDto->getGivenName());
-        }
-
-        if ($employeeDto->getFamilyName() !== null) {
-            $employee->getUser()->setFamilyName($employeeDto->getFamilyName());
         }
 
         if ($employeeDto->getPhone() !== null) {

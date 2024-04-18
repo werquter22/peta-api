@@ -36,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
         new Post(
             controller: EmployeeCreateAction::class,
-
+            security: "is_granted('ROLE_ADMIN')",
             input: EmployeeDto::class,
         ),
         new Get(),
