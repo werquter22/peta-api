@@ -15,7 +15,7 @@ class EmployeeFactory
     public function create(
         User $user,
         Service $service,
-        int $price,
+        float $price,
         string $room,
         Clinic $clinic,
         User $createdBy

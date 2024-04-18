@@ -28,7 +28,7 @@ class EmployeeDto
         private ?Service $service,
 
         #[Groups(['employee:write'])]
-        private ?int $price,
+        private ?float $price,
 
         #[Groups(['employee:write'])]
         private ?string $room,
@@ -63,7 +63,7 @@ class EmployeeDto
         return $this->service;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }

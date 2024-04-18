@@ -25,9 +25,7 @@ class GetChatsAction extends AbstractController
 
             $filterChats[] = new ChatsInfoDto(
                 $chat->getId(),
-                $this->getUserByChat($chat)->getGivenName(),
-                $this->getUserByChat($chat)->getFamilyName(),
-                $this->getUserByChat($chat)->getImage(),
+                $this->getUserByChat($chat)->getUsername(),
                 $lastMessage,
                 $lastMessage?->getCreatedAt(),
             );

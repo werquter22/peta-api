@@ -14,13 +14,7 @@ class ChatsInfoDto
         private int $id,
 
         #[Groups(['chat:read', 'message:read'])]
-        private string $givenName,
-
-        #[Groups(['chat:read', 'message:read'])]
-        private string $familyName,
-
-        #[Groups(['chat:read', 'message:read'])]
-        private ?MediaObject $image,
+        private string $userName,
 
         #[Groups(['chat:read', 'message:read'])]
         private ?Message $lastMessage,
@@ -35,19 +29,9 @@ class ChatsInfoDto
         return $this->id;
     }
 
-    public function getGivenName(): string
+    public function getUserName(): string
     {
-        return $this->givenName;
-    }
-
-    public function getFamilyName(): string
-    {
-        return $this->familyName;
-    }
-
-    public function getImage(): ?MediaObject
-    {
-        return $this->image;
+        return $this->userName;
     }
 
     public function getLastMessage(): ?Message

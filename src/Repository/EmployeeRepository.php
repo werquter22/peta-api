@@ -91,6 +91,7 @@ class EmployeeRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder
+            ->orderBy('e2.id', 'DESC')
             ->andWhere($queryBuilder->expr()->in('e2.id', $basisQueryBuilder->getDQL()));
     }
 

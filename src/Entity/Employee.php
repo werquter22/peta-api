@@ -36,7 +36,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
         new Post(
             controller: EmployeeCreateAction::class,
-            security: "is_granted('ROLE_ADMIN')",
+
             input: EmployeeDto::class,
         ),
         new Get(),
@@ -78,7 +78,7 @@ class Employee implements
 
     #[ORM\Column]
     #[Groups(['employee:read', 'service:read', 'order:read'])]
-    private ?int $price = null;
+    private ?float $price = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['employee:read', 'service:read', 'order:read'])]
@@ -140,12 +140,12 @@ class Employee implements
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
