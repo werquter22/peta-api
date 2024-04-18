@@ -33,7 +33,7 @@ class MessageRealTime
     public function watchAllChats(): void
     {
         $update = new Update(
-            'chats',
+            'chats/',
             json_encode(
                 [
                     'status' => true

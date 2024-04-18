@@ -17,7 +17,7 @@ class ChatsInfoDto
         private string $userName,
 
         #[Groups(['chat:read', 'message:read'])]
-        private ?Message $lastMessage,
+        private ?Message $message,
 
         #[Groups(['chat:read', 'message:read'])]
         private ?DateTimeInterface $createdAt
@@ -34,9 +34,9 @@ class ChatsInfoDto
         return $this->userName;
     }
 
-    public function getLastMessage(): ?Message
+    public function getMessage(): ?Message
     {
-        return $this->lastMessage;
+        return $this->message;
     }
 
     public function getCreatedAt(): ?DateTimeInterface

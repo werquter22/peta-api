@@ -21,9 +21,7 @@ class GetMessagesAction extends AbstractController
         foreach ($messages as $message) {
             $filterMessages[] = new ChatsInfoDto(
                 $message->getId(),
-                $message->getCreatedBy()->getGivenName(),
-                $message->getCreatedBy()->getFamilyName(),
-                $message->getCreatedBy()->getImage(),
+                $message->getCreatedBy()->getUsername(),
                 $message,
                 $message->getCreatedAt(),
             );
