@@ -241,7 +241,7 @@ class ClinicFixtures extends Fixture
         $categories = [];
         $services = [];
 
-        $admin = $this->userFactory->create('Админ', 'админ', '+998 (90) 222-11-11', null);
+        $admin = $this->userFactory->create('Nasiba', 'nasiba', '+998 (90) 222-11-11', null);
         $admin->addRole('ROLE_ADMIN');
         $manager->persist($admin);
 
