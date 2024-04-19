@@ -23,7 +23,7 @@ class GetMessagesAction extends AbstractController
                 $message->getId(),
                 $message->getCreatedBy(),
                 $message,
-                $message->getCreatedAt(),
+                0
             );
         }
 

@@ -17,7 +17,8 @@ class GetChatsAction extends AbstractController
         MessageRepository $messageRepository,
         Request $request
     ): array {
-        $chats = $chatRepository->findAllByUser($this->getUser());
+        $userName = $request->query->get('userName', '');
+        $chats = $chatRepository->findAllByUser($this->getUser(), $userName);
         $filterChats = [];
 
         foreach ($chats as $chat) {

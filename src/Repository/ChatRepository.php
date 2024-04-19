@@ -81,13 +81,22 @@ class ChatRepository extends ServiceEntityRepository
     /**
      * @return Chat[]
      */
-    public function findAllByUser(User $createdBy): array
+    public function findAllByUser(User $createdBy, string $userName): array
     {
-        return $this->createQueryBuilder('c')
+        $queryBuilder = $this->createQueryBuilder('c')
             ->leftJoin('c.messages', 'm')
-            ->orderBy('m.createdAt', 'DESC')
+            ->leftJoin('c.createdBy', 'u')
             ->andWhere('c.deletedAt IS NULL')
-            ->andWhere('c.user = :createdBy OR c.createdBy = :createdBy')
+            ->andWhere('c.user = :createdBy OR c.createdBy = :createdBy');
+
+        if ($userName !== '') {
+            $queryBuilder
+                ->andWhere('u.userName like :userName')
+                ->setParameter('userName', '%' . $userName . '%');
+        }
+
+        return $queryBuilder
+            ->orderBy('m.createdAt', 'DESC')
             ->setParameter('createdBy', $createdBy)
             ->setMaxResults(20)
             ->getQuery()
