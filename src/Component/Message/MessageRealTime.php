@@ -22,7 +22,8 @@ class MessageRealTime
             'chat/' . $chat->getId(),
             json_encode(
                 [
-                    'status' => true
+                    'status' => true,
+                    'chatId' => $chat->getId()
                 ]
             )
         );
