@@ -128,11 +128,11 @@ class User implements
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    #[Groups(['users:read', 'order:read', 'employee:read'])]
+    #[Groups(['users:read', 'order:read', 'employee:read', 'chat:read'])]
     private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(['users:read', 'user:write', 'user:isUniqueUsername:write', 'user:auth', 'employee:read', 'service:read', 'order:read'])]
+    #[Groups(['users:read', 'user:write', 'user:isUniqueUsername:write', 'user:auth', 'employee:read', 'service:read', 'order:read', 'chat:read'])]
     #[Assert\Length(min: 6, minMessage: 'Password must be at least {{ limit }} characters long')]
     private ?string $userName = null;
 
@@ -146,7 +146,7 @@ class User implements
     private ?string $phone = null;
 
     #[ORM\ManyToOne]
-    #[Groups(['user:read', 'user:write', 'employee:read', 'service:read'])]
+    #[Groups(['user:read', 'user:write', 'employee:read', 'service:read', 'chat:read'])]
     private ?MediaObject $image = null;
 
     #[ORM\Column(type: 'array')]

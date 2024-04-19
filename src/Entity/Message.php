@@ -53,7 +53,7 @@ class Message implements
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["message:read"])]
+    #[Groups(["message:read", "chat:read"])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'messages')]
@@ -69,11 +69,16 @@ class Message implements
     #[Groups(["message:read", "chat:read"])]
     private ?int $orderStatus = 0;
 
+    #[ORM\Column]
+    #[Groups(["message:read", "chat:read"])]
+    private ?bool $hasSeen = false;
+
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $createdBy = null;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups(["message:read", "chat:read"])]
     private ?DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
@@ -119,6 +124,18 @@ class Message implements
     public function setOrderStatus(int $orderStatus): self
     {
         $this->orderStatus = $orderStatus;
+
+        return $this;
+    }
+
+    public function getHasSeen(): ?bool
+    {
+        return $this->hasSeen;
+    }
+
+    public function setHasSeen(bool $hasSeen): self
+    {
+        $this->hasSeen = $hasSeen;
 
         return $this;
     }

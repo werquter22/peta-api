@@ -10,6 +10,7 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use App\Component\Chat\ChatDto;
 use App\Controller\Chat\CreateChatAction;
+use App\Controller\Chat\GetChatAction;
 use App\Controller\Chat\GetChatsAction;
 use App\Controller\DeleteAction;
 use App\Entity\Interfaces\CreatedAtSettableInterface;
@@ -35,7 +36,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
             controller: CreateChatAction::class,
             input: ChatDto::class
         ),
-        new Get(),
+        new Get(
+            controller: GetChatAction::class,
+            security: "object.getUser() == user || object.getCreatedBy() == user",
+        ),
         new Delete(
             controller: DeleteAction::class,
             security: "is_granted('ROLE_ADMIN')"

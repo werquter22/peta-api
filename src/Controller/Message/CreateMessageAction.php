@@ -20,7 +20,7 @@ class CreateMessageAction extends AbstractController
     ): Message {
         $message = $messageFactory->create($data->getChat(), $data->getText(), $this->getUser());
         $messageRepository->save($message, true);
-        $messageRealTime->watchMessages($message);
+        $messageRealTime->watchMessages($message->getChat());
         $messageRealTime->watchAllChats();
 
         return $message;

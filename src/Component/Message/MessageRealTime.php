@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Component\Message;
 
 
-use App\Entity\Message;
+use App\Entity\Chat;
 use Symfony\Component\Mercure\HubInterface;
 use Symfony\Component\Mercure\Update;
 
@@ -16,10 +16,10 @@ class MessageRealTime
     ) {
     }
 
-    public function watchMessages(Message $message): void
+    public function watchMessages(Chat $chat): void
     {
         $update = new Update(
-            'chat/' . $message->getChat()->getId(),
+            'chat/' . $chat->getId(),
             json_encode(
                 [
                     'status' => true

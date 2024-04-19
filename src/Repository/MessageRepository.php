@@ -95,4 +95,18 @@ class MessageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findUnseenCount(Chat $chat, User $user): int
+    {
+        return (int)$this->createQueryBuilder('m')
+            ->select('COUNT(m.id)')
+            ->andWhere('m.chat = :chat')
+            ->andWhere('m.createdBy != :user')
+            ->andWhere('m.hasSeen = false')
+            ->andWhere('m.deletedAt IS NULL')
+            ->setParameter('chat', $chat)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

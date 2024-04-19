@@ -21,13 +21,14 @@ class GetChatsAction extends AbstractController
         $filterChats = [];
 
         foreach ($chats as $chat) {
+            $unSeenNumber = $messageRepository->findUnseenCount($chat, $this->getUser());
             $lastMessage = $messageRepository->findLastMessage($chat);
 
             $filterChats[] = new ChatsInfoDto(
                 $chat->getId(),
-                $this->getUserByChat($chat)->getUsername(),
+                $this->getUserByChat($chat),
                 $lastMessage,
-                $lastMessage?->getCreatedAt(),
+                $unSeenNumber
             );
         }
 

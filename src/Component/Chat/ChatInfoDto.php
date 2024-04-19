@@ -2,11 +2,10 @@
 
 namespace App\Component\Chat;
 
-use App\Entity\Message;
 use App\Entity\User;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-class ChatsInfoDto
+class ChatInfoDto
 {
     public function __construct(
         #[Groups(['chat:read', 'message:read'])]
@@ -16,10 +15,7 @@ class ChatsInfoDto
         private User $user,
 
         #[Groups(['chat:read', 'message:read'])]
-        private ?Message $message,
-
-        #[Groups(['chat:read'])]
-        private int $unSeenNumber
+        private array $messages
     ) {
     }
 
@@ -33,13 +29,8 @@ class ChatsInfoDto
         return $this->user;
     }
 
-    public function getMessage(): ?Message
+    public function getMessages(): array
     {
-        return $this->message;
-    }
-
-    public function getUnSeenNumber(): int
-    {
-        return $this->unSeenNumber;
+        return $this->messages;
     }
 }
