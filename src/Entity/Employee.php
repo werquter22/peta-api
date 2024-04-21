@@ -80,10 +80,6 @@ class Employee implements
     #[Groups(['employee:read', 'service:read', 'order:read'])]
     private ?float $price = null;
 
-    #[ORM\Column(length: 255)]
-    #[Groups(['employee:read', 'service:read', 'order:read'])]
-    private ?string $room = null;
-
     #[ORM\ManyToOne(inversedBy: 'employees')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['employee:read', 'service:read', 'order:read'])]
@@ -148,18 +144,6 @@ class Employee implements
     public function setPrice(float $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getRoom(): ?string
-    {
-        return $this->room;
-    }
-
-    public function setRoom(string $room): self
-    {
-        $this->room = $room;
 
         return $this;
     }

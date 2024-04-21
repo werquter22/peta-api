@@ -69,19 +69,6 @@ class OrderRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    public function findCountTodayOrders(DateTimeInterface $today, Employee $employee): int
-    {
-        return $this->createQueryBuilder('o')
-            ->select('COUNT(o)')
-            ->andWhere('o.createdAt > :today')
-            ->andWhere('o.employee = :employee')
-            ->andWhere('o.deletedAt IS NULL')
-            ->setParameter('today', $today)
-            ->setParameter('employee', $employee)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
     public function findFilteredOrders(User $user, bool $isAdmin, bool $isDoctor, int $employee, int $service, int $createdBy, string $username): QueryBuilder
     {
         $queryBuilder = $this->createQueryBuilder('o2');
@@ -182,6 +169,7 @@ class OrderRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder
+            ->orderBy('o.createdAt', 'ASC')
             ->setParameter('today', $today)
             ->getQuery()
             ->getResult();

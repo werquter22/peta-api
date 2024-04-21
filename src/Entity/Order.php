@@ -15,7 +15,6 @@ use App\Controller\Order\AdmissionAction;
 use App\Controller\Order\CreateOrderAction;
 use App\Controller\Order\GetOrdersAction;
 use App\Controller\Order\GetTodayOrdersAction;
-use App\Entity\Interfaces\CreatedAtSettableInterface;
 use App\Entity\Interfaces\CreatedBySettableInterface;
 use App\Entity\Interfaces\DeletedAtSettableInterface;
 use App\Entity\Interfaces\UpdatedAtSettableInterface;
@@ -57,7 +56,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiFilter(SearchFilter::class, properties: ['employee' => 'exact', 'createdBy' => 'exact'])]
 class Order implements
     CreatedBySettableInterface,
-    CreatedAtSettableInterface,
     UpdatedAtSettableInterface,
     DeletedAtSettableInterface
 {
@@ -71,10 +69,6 @@ class Order implements
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(['order:read', 'order:write'])]
     private ?Employee $employee = null;
-
-    #[ORM\Column(length: 255)]
-    #[Groups(['order:read'])]
-    private ?string $orderNumber = null;
 
     #[ORM\Column]
     #[Groups(['order:read', 'order:admission'])]
@@ -90,7 +84,7 @@ class Order implements
     private ?User $createdBy = null;
 
     #[ORM\Column(type: 'datetime')]
-    #[Groups(['order:read'])]
+    #[Groups(['order:read', 'order:write'])]
     private ?DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
@@ -112,18 +106,6 @@ class Order implements
     public function setEmployee(?Employee $employee): self
     {
         $this->employee = $employee;
-
-        return $this;
-    }
-
-    public function getOrderNumber(): ?string
-    {
-        return $this->orderNumber;
-    }
-
-    public function setOrderNumber(string $orderNumber): self
-    {
-        $this->orderNumber = $orderNumber;
 
         return $this;
     }

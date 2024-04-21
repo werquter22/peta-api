@@ -44,7 +44,6 @@ class EmployeeCreateAction extends AbstractController
             $user,
             $employeeDto->getService(),
             $employeeDto->getPrice(),
-            $employeeDto->getRoom(),
             $employeeDto->getClinic(),
             $this->getUser());
     }

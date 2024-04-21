@@ -16,7 +16,6 @@ class EmployeeFactory
         User $user,
         Service $service,
         float $price,
-        string $room,
         Clinic $clinic,
         User $createdBy
     ): Employee {
@@ -24,7 +23,6 @@ class EmployeeFactory
             ->setUser($user)
             ->setService($service)
             ->setPrice($price)
-            ->setRoom($room)
             ->setClinic($clinic)
             ->setCreatedBy($createdBy)
             ->setCreatedAt(new DateTime());

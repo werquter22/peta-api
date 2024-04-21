@@ -31,9 +31,6 @@ class EmployeeDto
         private ?float $price,
 
         #[Groups(['employee:write'])]
-        private ?string $room,
-
-        #[Groups(['employee:write'])]
         private ?Clinic $clinic
     ) {
     }
@@ -66,11 +63,6 @@ class EmployeeDto
     public function getPrice(): ?float
     {
         return $this->price;
-    }
-
-    public function getRoom(): ?string
-    {
-        return $this->room;
     }
 
     public function getClinic(): ?Clinic
