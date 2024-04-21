@@ -262,7 +262,7 @@ class ClinicFixtures extends Fixture
                     $item['employee'][$i]['userName'],
                     $item['employee'][$i]['password'],
                     $item['employee'][$i]['phone'],
-                    $this->addImage($item['employee'][$i], $index, $manager)
+                    null
                 );
 
                 $manager->persist($user);
