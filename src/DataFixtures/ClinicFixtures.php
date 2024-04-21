@@ -78,7 +78,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'темур',
                     'phone' => '+998 (90) 222-11-12',
                     'price' => '50000',
-                    'room' => 'А',
                     'image' => __DIR__ . '/img/1.JPG',
                 ],
                 1 => [
@@ -86,7 +85,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'акбар',
                     'phone' => '+998 (90) 222-11-20',
                     'price' => '60000',
-                    'room' => 'Б',
                     'image' => __DIR__ . '/img/01.jpeg',
                 ],
                 2 => [
@@ -94,7 +92,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'азиз',
                     'phone' => '+998 (90) 222-11-30',
                     'price' => '70000',
-                    'room' => 'В',
                     'image' => __DIR__ . '/img/2.JPG',
                 ]
             ],
@@ -121,7 +118,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'лола',
                     'phone' => '+998 (90) 222-11-40',
                     'price' => '80000',
-                    'room' => 'Г',
                     'image' => __DIR__ . '/img/02.webp',
                 ],
                 1 => [
@@ -129,7 +125,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'анвар',
                     'phone' => '+998 (90) 222-11-50',
                     'price' => '90000',
-                    'room' => 'Д',
                     'image' => __DIR__ . '/img/3.JPG',
                 ],
                 2 => [
@@ -137,7 +132,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'муниса',
                     'phone' => '+998 (90) 222-11-60',
                     'price' => '100000',
-                    'room' => 'Е',
                     'image' => __DIR__ . '/img/03.jpeg',
                 ]
             ],
@@ -162,7 +156,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'бахром',
                     'phone' => '+998 (90) 222-11-72',
                     'price' => '110000',
-                    'room' => 'К',
                     'image' => __DIR__ . '/img/4.jpeg',
                 ],
                 1 => [
@@ -170,7 +163,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'мадина',
                     'phone' => '+998 (90) 222-11-80',
                     'price' => '120000',
-                    'room' => 'Л',
                     'image' => __DIR__ . '/img/04.JPG',
                 ],
                 2 => [
@@ -178,7 +170,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'луиза',
                     'phone' => '+998 (90) 222-11-90',
                     'price' => '130000',
-                    'room' => 'М',
                     'image' => __DIR__ . '/img/5.JPG',
                 ]
             ],
@@ -203,7 +194,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'азамат',
                     'phone' => '+998 (90) 222-12-12',
                     'price' => '140000',
-                    'room' => 'Н',
                     'image' => __DIR__ . '/img/6.JPG',
                 ],
                 1 => [
@@ -211,7 +201,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'севинч',
                     'phone' => '+998 (90) 222-20-20',
                     'price' => '150000',
-                    'room' => 'О',
                     'image' => __DIR__ . '/img/7.JPG',
                 ],
                 2 => [
@@ -219,7 +208,6 @@ class ClinicFixtures extends Fixture
                     'password' => 'диана',
                     'phone' => '+998 (90) 222-30-30',
                     'price' => '160000',
-                    'room' => 'П',
                     'image' => __DIR__ . '/img/8.JPG',
                 ]
             ],
@@ -279,7 +267,7 @@ class ClinicFixtures extends Fixture
 
                 $manager->persist($user);
                 $user->addRole('ROLE_DOCTOR');
-                $employee = $this->employeeFactory->create($user, $services[$i], $item['employee'][$i]['price'], $item['employee'][$i]['room'], $clinic, $admin);
+                $employee = $this->employeeFactory->create($user, $services[$i], $item['employee'][$i]['price'], $clinic, $admin);
                 $manager->persist($employee);
             }
         }
