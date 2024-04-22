@@ -31,7 +31,7 @@ class AdmissionAction extends AbstractController
             $chatRepository->save($chat);
         }
 
-        $message = $messageFactory->create($chat, $data->getOrderNumber(), $this->getUser(), $data->getStatus());
+        $message = $messageFactory->create($chat, 'id ' . $data->getId(), $this->getUser(), $data->getStatus());
         $messageRepository->save($message, true);
         $messageRealTime->watchMessages($chat);
         $messageRealTime->watchAllChats();
