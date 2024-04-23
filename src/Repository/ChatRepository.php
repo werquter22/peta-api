@@ -85,13 +85,14 @@ class ChatRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('c')
             ->leftJoin('c.messages', 'm')
-            ->leftJoin('c.createdBy', 'u')
+            ->leftJoin('c.user', 'u')
+            ->leftJoin('c.createdBy', 'cb')
             ->andWhere('c.deletedAt IS NULL')
             ->andWhere('c.user = :createdBy OR c.createdBy = :createdBy');
 
         if ($userName !== '') {
             $queryBuilder
-                ->andWhere('u.userName like :userName')
+                ->andWhere('u.userName like :userName OR cb.userName like :userName')
                 ->setParameter('userName', '%' . $userName . '%');
         }
 
